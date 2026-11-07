@@ -1,0 +1,18 @@
+types {
+    text/html html htm;
+    text/css css;
+    text/plain txt;
+    application/javascript js mjs;
+    application/json json map;
+    application/wasm wasm;
+    application/pdf pdf;
+    image/png png;
+    image/jpeg jpg jpeg;
+    image/gif gif;
+    image/svg+xml svg svgz;
+    image/webp webp;
+    image/avif avif;
+    image/x-icon ico;
+    font/woff woff;
+    font/woff2 woff2;
+}

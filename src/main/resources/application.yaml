@@ -1,0 +1,50 @@
+server:
+  port: ${SERVER_PORT:8092}
+
+spring:
+  application:
+    name: login-test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库需提前创建，并手动执行 sql/01_schema.sql。
+    # 强制数据库会话使用 UTC，与建表脚本的时间约定一致。
+    url: "${MYSQL_URL:jdbc:mysql://localhost:3306/shiro_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai}"
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:123456}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      database: ${REDIS_DATABASE:0}
+      connect-timeout: 3s
+      timeout: 3s
+  sql:
+    init:
+      # 初始化脚本不可重复执行，避免每次启动重新建表。
+      mode: never
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      # 与 SQL 中的 AUTO_INCREMENT 主键对应。
+      id-type: auto
+app:
+  jwt:
+    secret-name: WlRJemFqa3dNekk1YW1ScGNXVjNkVE5xYjJsa2NYZDFiMmt6T0E9PQ==
+    token-name: Authorization
+    access-ttl: 15m
+    refresh-ttl: 7d
+  shiro:
+    anon-path:
+      - /user/login
+      - /user/login/refresh
+      - /test/t1
+    jwt-path:
+      - /test/t2

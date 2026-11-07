@@ -1,0 +1,20 @@
+{
+  "name": "login-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "npm run build && npm run nginx:start",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test frontend/api.test.js",
+    "nginx:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/nginx.ps1 start",
+    "nginx:reload": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/nginx.ps1 reload",
+    "nginx:stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/nginx.ps1 stop",
+    "nginx:test": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/nginx.ps1 test",
+    "nginx:status": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/nginx.ps1 status"
+  },
+  "dependencies": { "vue": "^3.5.0" },
+  "devDependencies": { "vite": "^7.0.0", "@vitejs/plugin-vue": "^6.0.0" }
+}
